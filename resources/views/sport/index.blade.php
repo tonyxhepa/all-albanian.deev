@@ -1,86 +1,89 @@
 @extends('layouts.app')
 
 @section('menu')
-    @include('layouts.sport-menu')
+    @include('layouts.app-menu')
 @endsection
 @section('content')
     <section>
-        {{--<div class="container">--}}
+        <div class="container">
+            <div class="row header-row">
+                <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
 
+                    <div class="row header-row">
+                        @foreach($superliga_1 as $epara)
 
-            {{--<div class="row header-row">--}}
-                {{--<div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">--}}
-                    {{--<div class="row header-row">--}}
-                        {{--@foreach($lajmi_i_pare as $epara)--}}
-                            {{--<div class="col-sm-12">--}}
-                                {{--@if(count($epara->photos) >= 1)--}}
-                                    {{--<img class="img-responsive height-233"  src="{{ asset('storage').$epara->photos->first()->thumbnail }}" alt="">--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                            {{--<div class="col-sm-12">--}}
-                                {{--<h3>{{ $epara->title }}</h3>--}}
-                                {{--<p>{{ $epara->pershkrimi }}</p>--}}
-                            {{--</div>--}}
-                        {{--@endforeach--}}
-                    {{--</div>--}}
-                    {{--<div class="row header-row">--}}
-                        {{--@foreach($kater_lajme as $tre)--}}
-                            {{--<div class="col-sm-6 hover" >--}}
+                            <div class="col-sm-12">
+                                @if(count($epara->photos) >= 1)
+                                    <img class="img-responsive height-233"  src="{{ asset('storage').$epara->photos->first()->thumbnail }}" alt="">
+                                @endif
+                            </div>
+                            <a href="{{ url('/tech/'. $epara->slug) }}">
+                                <div class="col-sm-12">
+                                    <h3>{{ $epara->title }}</h3>
+                                    <p>{{ $epara->pershkrimi }}</p>
+                                </div>
+                            </a>
 
-                                {{--<a href="">--}}
-                                    {{--@if(count($tre->photos) >= 1)--}}
-                                        {{--<img class="img-responsive" src="{{ asset('storage').$tre->photos->first()->threezerozero }}">--}}
-                                    {{--@endif--}}
-                                    {{--<p class="max-lines">{{ $tre->title }}</p>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                        {{--@endforeach--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-12 col-sm-24 col-xs-24">--}}
-                    {{--<div class="row header-row">--}}
-                        {{--@foreach($katera_lajme as $katerta)--}}
-                            {{--<div class="col-sm-12 col-xs-24">--}}
-                                {{--<a href="">--}}
+                        @endforeach
+                    </div>
+                    <div class="row header-row">
+                        @foreach($premier_kater as $tre)
+                            <div class="col-sm-6 hover" >
 
-                                    {{--<div class="imageHolder">--}}
-                                        {{--@if(count($katerta->photos) >= 1)--}}
-                                            {{--<img class="img-responsive height-233" src="{{ asset('storage').$katerta->photos->first()->thumbnail }}">--}}
-                                        {{--@endif--}}
-                                        {{--<h3 class="caption-bottom">{{ $katerta->title }}</h3>--}}
-                                    {{--</div>--}}
-                                {{--</a>--}}
-                            {{--</div>--}}
-                        {{--@endforeach--}}
-                    {{--</div>--}}
+                                <a href="{{ url('/tech/'. $tre->slug) }}">
+                                    @if(count($tre->photos) >= 1)
+                                        <img class="img-responsive" src="{{ asset('storage').$tre->photos->first()->threezerozero }}">
+                                    @endif
+                                    <p class="max-lines">{{ $tre->title }}</p>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-24 col-xs-24">
+                    <div class="row header-row">
+                        @foreach($seria_a_kater as $katerta)
+                            <div class="col-sm-12 col-xs-24">
+                                <a href="{{ url('/tech/'. $katerta->slug) }}">
 
-                {{--</div>--}}
+                                    <div class="imageHolder">
+                                        @if(count($katerta->photos) >= 1)
+                                            <img class="img-responsive height-233" src="{{ asset('storage').$katerta->photos->first()->thumbnail }}">
+                                        @endif
+                                        <h3 class="caption-bottom">{{ $katerta->title }}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
 
-            {{--</div>--}}
-        {{--</div>--}}
+                </div>
+
+            </div>
+        </div>
     </section>
     <div class="container">
         <div class="row">
             <div class="news-row-menu">
                 <ul class="list-inline">
                     <li>
-                        <a style="color: #eb9316" href="{{ url('/sport/al') }}">Superliga</a>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
                     </li>
 
                     <li class="pull-right hidden-xs">
-                        <a href="{{ url('/sport/al') }}">Te gjitha</a>
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            @foreach($sport_sa as $al)
+            @foreach($superliga_news as $news)
                 <div class="col-xs-16 col-sm-8 col-md-4">
-                    <a href="{{ url('/sport/'. $al->slug) }}">
-                        @if(count($al->photos) >= 1)
-                            <img class="img-responsive" src="{{ asset('storage'). $al->photos->first()->threezerozero }}">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
                         @endif
-                        <p>{{ $al->title }}</p>
+                        <p>{{ $news->title }}</p>
                     </a>
                 </div>
             @endforeach
@@ -92,29 +95,310 @@
             <div class="news-row-menu">
                 <ul class="list-inline">
                     <li>
-                        <a style="color: #eb9316" href="{{ url('/sport/ks') }}">Kosova</a>
+                        <a style="color: #eb9316" href="{{ url('/sport/sup-kosoves/') }}">Superliga Kosoves</a>
                     </li>
 
                     <li class="pull-right hidden-xs">
-                        <a href="{{ url('/sport/ks') }}">Te gjitha</a>
+                        <a href="{{ url('/sport/sup-kosoves/') }}">Te gjitha</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row">
-            @foreach($sport_bl as $al)
+            @foreach($sup_kosoves_news as $news)
                 <div class="col-xs-16 col-sm-8 col-md-4">
-                    <a href="{{ url('/sport/'. $al->slug) }}">
-                        @if(count($al->photos) >= 1)
-                            <img class="img-responsive" src="{{ asset('storage'). $al->photos->first()->threezerozero }}">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
                         @endif
-                        <p>{{ $al->title }}</p>
+                        <p>{{ $news->title }}</p>
                     </a>
                 </div>
             @endforeach
 
         </div>
     </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/sport/superliga/') }}">Superliga</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/sport/superliga/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($superliga_news as $news)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/femrat/'. $news->slug) }}">
+                        @if(count($news->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $news->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $news->title }}</p>
+                    </a>
+                </div>
+            @endforeach
+
+        </div>
+    </div>
+
 
 
 @endsection

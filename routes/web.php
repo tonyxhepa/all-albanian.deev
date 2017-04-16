@@ -23,15 +23,18 @@ Route::get('/home', 'HomeController@index');
 Route::group(['prefix' => 'argetim'], function (){
     Route::get('/', 'Show\ArgetimController@index');
     Route::get('/funlajme/', 'Show\ArgetimController@fun_lajme');
+    Route::get('/funlajme/{slug}', 'Show\ArgetimController@showfun_lajme');
     Route::get('/barsoleta/', 'Show\ArgetimController@barsoleta');
+    Route::get('/barsoleta/{slug}', 'Show\ArgetimController@show_barsoleta');
     Route::get('/funvideo/', 'Show\ArgetimController@fun_video');
-    Route::get('/games/', 'Show\ArgetimController@games');
-    Route::get('/kerko', 'Show\ArgetimController@search');
-    Route::get('/{slug}', 'Show\ArgetimController@show');
+    Route::get('/funvideo/{slug}', 'Show\ArgetimController@funshow_video');
 });
 Route::group(['prefix' => 'femrat'], function (){
     Route::get('/', 'Show\FemraController@index');
-    Route::get('/kerko', 'Show\FemraController@search');
+    Route::get('/mode/', 'Show\FemraController@mode');
+    Route::get('/familja/', 'Show\FemraController@familja');
+    Route::get('/karriera/', 'Show\FemraController@karriera');
+    Route::get('/bukuri/', 'Show\FemraController@bukuri');
     Route::get('/{slug}', 'Show\FemraController@show');
 });
 Route::group(['prefix' => 'lajme'], function (){
@@ -45,7 +48,9 @@ Route::group(['prefix' => 'lajme'], function (){
 });
 Route::group(['prefix' => 'magazina'], function (){
     Route::get('/', 'Show\MagazinaController@index');
-    Route::get('/kerko', 'Show\MagazinaController@search');
+    Route::get('/vipat/', 'Show\MagazinaController@vipat');
+    Route::get('/muzike/', 'Show\MagazinaController@muzike');
+    Route::get('/film/', 'Show\MagazinaController@film');
     Route::get('/{slug}', 'Show\MagazinaController@show');
 });
 Route::group(['prefix' => 'prona'], function (){
@@ -65,17 +70,33 @@ Route::group(['prefix' => 'shitje'], function (){
 });
 Route::group(['prefix' => 'sport'], function (){
     Route::get('/', 'Show\SportController@index');
-    Route::get('/kerko', 'Show\SportController@search');
-    Route::get('/{slug}', 'Show\SportController@show');
+    Route::get('/bota/', 'Show\SportController@bota');
+    Route::get('/boterori/', 'Show\SportController@boterori');
+    Route::get('/bundesliga/', 'Show\SportController@bundesliga');
+    Route::get('/eredivisie/', 'Show\SportController@eredivisie');
+    Route::get('/formula-1/', 'Show\SportController@formula_1');
+    Route::get('/laliga/', 'Show\SportController@laliga');
+    Route::get('/liga-pare/', 'Show\SportController@liga_pare');
+    Route::get('/liga1/', 'Show\SportController@liga1');
+    Route::get('/premier/', 'Show\SportController@premier');
+    Route::get('/seria-a/', 'Show\SportController@seria_a');
+    Route::get('/sup-kosoves/', 'Show\SportController@sup_kosoves');
+    Route::get('/superliga/', 'Show\SportController@superliga');
 });
 Route::group(['prefix' => 'tech'], function (){
     Route::get('/', 'Show\TechController@index');
-    Route::get('/kerko', 'Show\TechController@search');
+    Route::get('/app/', 'Show\TechController@app');
+    Route::get('/internet/', 'Show\TechController@internet');
+    Route::get('/media-sociale/', 'Show\TechController@m_sociale');
+    Route::get('/mobile/', 'Show\TechController@mobile');
     Route::get('/{slug}', 'Show\TechController@show');
 });
 Route::group(['prefix' => 'kuzhina'], function (){
     Route::get('/', 'Show\KuzhinaController@index');
-    Route::get('/kerko', 'Show\KuzhinaController@search');
+    Route::get('/embelsira/', 'Show\KuzhinaController@embelsira');
+    Route::get('/sallata/', 'Show\KuzhinaController@sallata');
+    Route::get('/tradicionale/', 'Show\KuzhinaController@tradicionale');
+    Route::get('/gjellera/', 'Show\KuzhinaController@gjellera');
     Route::get('/{slug}', 'Show\KuzhinaController@show');
 });
 Route::group(['prefix' => 'makina'], function (){

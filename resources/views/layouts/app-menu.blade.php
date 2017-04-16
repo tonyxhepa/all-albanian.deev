@@ -48,13 +48,32 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="false">Sport <i class="fa fa-angle-down ml-5"></i></a>
                     <ul class="dropdown-menu row" style="border-bottom: 2px solid green;">
                         <li class="col-sm-6 col-xs-24">
-                            <ul class="list-unstyled">
-                                <li><a href="{{ url('/sport/') }}">Kryesoret</a></li>
-                                <li><a href="#">Superliga</a></li>
-                                <li><a href="#">Suo-Kosova</a></li>
-                                <li><a href="#">Seria A</a></li>
-                                <li><a href="#">Bundesliga</a></li>
-                            </ul>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul class="list-unstyled">
+                                        <li><a href="{{ url('/sport/') }}">Kryesoret</a></li>
+                                        <li><a href="{{ url('/sport/superliga/') }}">Superliga</a></li>
+                                        <li><a href="{{ url('/sport/sup-kosoves/') }}">Sup-Kosova</a></li>
+                                        <li><a href="{{ url('/sport/liga-pare/') }}">Liga e Pare Maqedonise</a></li>
+                                        <li><a href="{{ url('/sport/boterori/') }}">Boterori 2018</a></li>
+                                        <li><a href="{{ url('/sport/formula-1/') }}">Formula 1</a></li>
+                                        <li><a href="{{ url('/sport/bota/') }}">Bota</a></li>
+
+                                    </ul>
+                                </div>
+                                <div class="col-md-12">
+
+                                    <ul class="list-unstyled">
+                                        <li><a href="{{ url('/sport/seria-a/') }}">Seria A</a></li>
+                                        <li><a href="{{ url('/sport/premier/') }}">Premier_liga</a></li>
+                                        <li><a href="{{ url('/sport/laliga/') }}">Laliga</a></li>
+                                        <li><a href="{{ url('/sport/liga1/') }}">Liga 1</a></li>
+                                        <li><a href="{{ url('/sport/bundesliga/') }}">Bundesliga</a></li>
+                                        <li><a href="{{ url('/sport/eredivisie') }}">Eredivisie</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
                         </li>
                         @foreach($sport_menu as $menu)
                             <li class="col-md-6 hidden-sm hidden-xs">
@@ -115,9 +134,10 @@
                     <ul class="dropdown-menu row">
                         <li class="col-md-6 col-xs-24">
                             <ul class="list-unstyled">
-                                <li><a href="#">Shqiperia</a></li>
-                                <li><a href="#">Sidebar Left</a></li>
-                                <li><a href="#">Products Left</a></li>
+                                <li><a href="{{ url('/argetim') }}">Kryesoret</a></li>
+                                <li><a href="{{ url('/argetim/funvideo') }}">Fun Videos</a></li>
+                                <li><a href="{{ url('/argetim/funlajme') }}">Fun Lajme</a></li>
+                                <li><a href="{{ url('/argetim/barsoleta') }}">Barsoleta</a></li>
                             </ul>
                         </li>
                         <div class="col-md-18 hidden-sm hidden-xs">
@@ -151,9 +171,11 @@
                     <ul class="dropdown-menu row">
                         <li class="col-md-6 col-xs-24">
                             <ul class="list-unstyled">
-                                <li><a href="#">Shqiperia</a></li>
-                                <li><a href="#">Sidebar Left</a></li>
-                                <li><a href="#">Products Left</a></li>
+                                <li><a href="{{ url('/magazina/') }}">Kryesoret</a></li>
+                                <li><a href="{{ url('/magazina/vipat/') }}">Vipat</a></li>
+                                <li><a href="{{ url('/magazina/muzike/') }}">Muzike</a></li>
+                                <li><a href="{{ url('/magazina/film/') }}">Film</a></li>
+
                             </ul>
                         </li>
                         <div class="col-md-18 hidden-sm hidden-xs">
@@ -187,9 +209,11 @@
                     <ul class="dropdown-menu row">
                         <li class="col-md-6 col-xs-24">
                             <ul class="list-unstyled">
-                                <li><a href="#">Shqiperia</a></li>
-                                <li><a href="#">Sidebar Left</a></li>
-                                <li><a href="#">Products Left</a></li>
+                                <li><a href="{{ url('/femrat/') }}">Kryesoret</a></li>
+                                <li><a href="{{ url('/femrat/mode/') }}">Mode</a></li>
+                                <li><a href="{{ url('/femrat/familja/') }}">Familja</a></li>
+                                <li><a href="{{ url('/femrat/karriera/') }}">Karriera</a></li>
+                                <li><a href="{{ url('/femrat/bukuri/') }}">Bukuri</a></li>
                             </ul>
                         </li>
                         <div class="col-md-18 hidden-sm hidden-xs">
@@ -198,7 +222,7 @@
                                 @foreach($femrat_menu as $menu)
                                     <li class="col-md-8 hidden-sm hidden-xs">
                                         <ul class="list-unstyled">
-                                            <a href="">
+                                            <a href="{{ url('/femrat/'. $menu->slug) }}">
                                                 <li>
                                                     @if(count($menu->photos) > 0)
                                                         <img class="img-responsive"  src="{{ asset('storage').$menu->photos->first()->threezerozero }}" alt="">
@@ -223,9 +247,11 @@
                     <ul class="dropdown-menu row">
                         <li class="col-md-6 col-xs-24">
                             <ul class="list-unstyled">
-                                <li><a href="#">Shqiperia</a></li>
-                                <li><a href="#">Sidebar Left</a></li>
-                                <li><a href="#">Products Left</a></li>
+                                <li><a href="{{ url('/kuzhina/') }}">Kryesoret</a></li>
+                                <li><a href="{{ url('/kuzhina/embelsira') }}">Embelsira</a></li>
+                                <li><a href="{{ url('/kuzhina/tradicionale/') }}">Tradicionale</a></li>
+                                <li><a href="{{ url('kuzhina/sallata/') }}">Sallata</a></li>
+                                <li><a href="{{ url('/kuzhina/gjellera/') }}">Gjellera</a></li>
                             </ul>
                         </li>
                         <div class="col-md-18 hidden-sm hidden-xs">
@@ -234,7 +260,7 @@
                                 @foreach($kuzhina_menu as $menu)
                                     <li class="col-md-8 hidden-sm hidden-xs">
                                         <ul class="list-unstyled">
-                                            <a href="">
+                                            <a href="{{ url('/kuzhina/'. $menu->slug) }}">
                                                 <li>
                                                     @if(count($menu->photos) > 0)
                                                         <img class="img-responsive"  src="{{ asset('storage').$menu->photos->first()->threezerozero }}" alt="">
@@ -259,9 +285,11 @@
                     <ul class="dropdown-menu row">
                         <li class="col-md-6 col-xs-24">
                             <ul class="list-unstyled">
-                                <li><a href="#">Shqiperia</a></li>
-                                <li><a href="#">Sidebar Left</a></li>
-                                <li><a href="#">Products Left</a></li>
+                                <li><a href="{{ url('/tech/') }}">Kryesoret</a></li>
+                                <li><a href="{{ url('/tech/app/') }}">Apps</a></li>
+                                <li><a href="{{ url('/tech/media-sociale/') }}">Media Sociale</a></li>
+                                <li><a href="{{ url('/tech/mobile/') }}">Mobile</a></li>
+                                <li><a href="{{ url('/tech/internet/') }}">Internet</a></li>
                             </ul>
                         </li>
                         <div class="col-md-18 hidden-sm hidden-xs">
@@ -270,7 +298,7 @@
                                 @foreach($tech_menu as $menu)
                                     <li class="col-md-8 hidden-sm hidden-xs">
                                         <ul class="list-unstyled">
-                                            <a href="">
+                                            <a href="{{ url('/tech/'. $menu->slug) }}">
                                                 <li>
                                                     @if(count($menu->photos) > 0)
                                                         <img class="img-responsive"  src="{{ asset('storage').$menu->photos->first()->threezerozero }}" alt="">

@@ -5,24 +5,34 @@
     @endsection
 @section('content')
     <div class="container">
-        {{--<div class="row">--}}
-            {{--@include('argetim.search-box')--}}
-        {{--</div>--}}
-    </div>
-    <div class="container">
         <div class="row">
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/argetim/barsoleta') }}">Barsoleta</a>
+                    </li>
 
-            @foreach($argetimet as $argetimi)
-                @if(count($argetimi->photos) >= 1)
-                    <img src="{{ asset('storage').$argetimi->photos->first()->threezerozero }}">
-                @else
-                    <img height ="75"src ="{{ 'http://placehold.it/400x400' }}" alt=""  class="img-circle">
-                @endif
-                {{ $argetimi->title }}
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/argetim/barsoleta') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($argetimet_barsoleta as $al)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/argetim/barsoleta/'. $al->slug) }}">
+                        @if(count($al->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $al->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $al->title }}</p>
+                    </a>
+                </div>
             @endforeach
 
         </div>
     </div>
+
     @endsection
 @section('scripts')
     <script src="{{asset('js/vue.js')}}"></script>

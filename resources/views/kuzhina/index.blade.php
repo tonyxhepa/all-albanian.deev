@@ -2,31 +2,124 @@
 
 @section('menu')
     @include('layouts.app-menu')
-    @endsection
+@endsection
 @section('content')
-    <div class="container">
-        <div class="row">
-            @include('kuzhina.search-box')
+    <section>
+        <div class="container">
+            <div class="row header-row">
+                <div class="col-lg-12 col-md-12 col-sm-24 col-xs-24">
+
+                    <div class="row header-row">
+                        @foreach($embelsire_nje as $epara)
+
+                            <div class="col-sm-12">
+                                @if(count($epara->photos) >= 1)
+                                    <img class="img-responsive height-233"  src="{{ asset('storage').$epara->photos->first()->thumbnail }}" alt="">
+                                @endif
+                            </div>
+                            <a href="{{ url('/kuzhina/'. $epara->slug) }}">
+                                <div class="col-sm-12">
+                                    <h3>{{ $epara->title }}</h3>
+                                    <p>{{ $epara->pershkrimi }}</p>
+                                </div>
+                            </a>
+
+                        @endforeach
+                    </div>
+                    <div class="row header-row">
+                        @foreach($sallata_kater as $tre)
+                            <div class="col-sm-6 hover" >
+
+                                <a href="{{ url('/kuzhina/'. $tre->slug) }}">
+                                    @if(count($tre->photos) >= 1)
+                                        <img class="img-responsive" src="{{ asset('storage').$tre->photos->first()->threezerozero }}">
+                                    @endif
+                                    <p class="max-lines">{{ $tre->title }}</p>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-24 col-xs-24">
+                    <div class="row header-row">
+                        @foreach($tradicionale_kater as $katerta)
+                            <div class="col-sm-12 col-xs-24">
+                                <a href="{{ url('/femrat/'. $katerta->slug) }}">
+
+                                    <div class="imageHolder">
+                                        @if(count($katerta->photos) >= 1)
+                                            <img class="img-responsive height-233" src="{{ asset('storage').$katerta->photos->first()->thumbnail }}">
+                                        @endif
+                                        <h3 class="caption-bottom">{{ $katerta->title }}</h3>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-    </div>
+    </section>
     <div class="container">
         <div class="row">
-            @foreach($kuzhinat as $kuzhina)
-                @if(count($kuzhina->photos) >= 1)
-                    <img src="{{ asset('storage').$kuzhina->photos->first()->threezerozero }}">
-                @else
-                    <img height ="75"src ="{{ 'http://placehold.it/400x400' }}" alt=""  class="img-circle">
-                @endif
-                {{ $kuzhina->title }}
+            <div class="news-row-menu">
+                <ul class="list-inline">
+                    <li>
+                        <a style="color: #eb9316" href="{{ url('/kuzhina/embelsire/') }}">Mode</a>
+                    </li>
+
+                    <li class="pull-right hidden-xs">
+                        <a href="{{ url('/kuzhina/embelsire/') }}">Te gjitha</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            @foreach($embelsirat as $embelsira)
+                <div class="col-xs-16 col-sm-8 col-md-4">
+                    <a href="{{ url('/kuzhina/'. $embelsira->slug) }}">
+                        @if(count($embelsira->photos) >= 1)
+                            <img class="img-responsive" src="{{ asset('storage'). $embelsira->photos->first()->threezerozero }}">
+                        @endif
+                        <p>{{ $embelsira->title }}</p>
+                    </a>
+                </div>
             @endforeach
 
         </div>
     </div>
-    @endsection
+@endsection
 @section('scripts')
     <script src="{{asset('js/vue.js')}}"></script>
     {{--<script type="text/javascript" href="js/app.js"></script>--}}
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('select[name="car_make_id"]').on('change', function() {
+                var car_make_idID = $(this).val();
+                if(car_make_idID) {
+                    $.ajax({
+                        url: '/mycarform/ajax/'+car_make_idID,
+                        type: "GET",
+                        dataType: "json",
+                        success:function(data) {
+
+
+                            $('select[name="car_model_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="car_model_id"]').append('<option value="'+ key +'">'+ value +'</option>');
+                            });
+
+                        }
+                    });
+                }else{
+                    $('select[name="car_model_id"]').empty();
+                }
+            });
+        });
+    </script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('select[name="country_id"]').on('change', function() {
